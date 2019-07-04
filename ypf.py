@@ -1,12 +1,9 @@
 # This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler to rebuild
 
-import array
-import struct
-import zlib
-from enum import Enum
 from pkg_resources import parse_version
-
 from kaitaistruct import __version__ as ks_version, KaitaiStruct, KaitaiStream, BytesIO
+from enum import Enum
+import zlib
 
 
 if parse_version(ks_version) < parse_version('0.7'):
@@ -23,17 +20,23 @@ class Ypf(KaitaiStruct):
         self._io = _io
         self._parent = _parent
         self._root = _root if _root else self
-        self.magic = self._io.ensure_fixed_contents(struct.pack('4b', 89, 80, 70, 0))
-        self.unknown0 = self._io.read_u4le()
+        self._read()
+
+    def _read(self):
+        self.magic = self._io.ensure_fixed_contents(b"\x59\x50\x46\x00")
+        self.engine_version = self._io.read_u4le()
         self.file_count = self._io.read_u4le()
         self.header_len = self._io.read_u4le()
-        self.guard = self._io.ensure_fixed_contents(struct.pack('16b', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
+        self.guard = self._io.ensure_fixed_contents(b"\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00")
 
     class ObfsFname16(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(16)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -45,6 +48,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(54)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -56,6 +62,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             if self._parent.compressed == 1:
                 self._raw_cmprsd_body = self._io.read_bytes_full()
                 self.cmprsd_body = zlib.decompress(self._raw_cmprsd_body)
@@ -70,6 +79,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(27)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -81,6 +93,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(38)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -92,6 +107,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(48)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -103,6 +121,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(31)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -114,6 +135,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(20)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -125,6 +149,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(42)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -136,6 +163,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(39)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -147,6 +177,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(12)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -158,6 +191,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(14)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -169,6 +205,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(34)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -180,6 +219,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(51)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -191,6 +233,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(28)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -202,6 +247,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(46)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -213,6 +261,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(36)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -224,6 +275,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(23)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -235,6 +289,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(17)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -246,6 +303,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(41)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -257,6 +317,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(25)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -268,6 +331,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(45)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -279,6 +345,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(50)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -290,6 +359,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(55)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -301,6 +373,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(30)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -312,6 +387,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(44)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -323,6 +401,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(33)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -334,6 +415,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(11)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -345,6 +429,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(13)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -356,6 +443,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(47)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -367,6 +457,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(35)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -378,6 +471,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(24)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -389,6 +485,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(29)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -400,6 +499,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(22)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -411,6 +513,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(18)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -422,6 +527,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(52)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -433,6 +541,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(40)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -444,9 +555,14 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self.entries = []
+            i = 0
             while not self._io.is_eof():
                 self.entries.append(self._root.FileEntry(self._io, self, self._root))
+                i += 1
 
 
 
@@ -455,6 +571,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(53)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -466,6 +585,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self.unknown0 = self._io.read_u4le()
             self.filename_length_marker = self._io.read_u1()
             _on = self.filename_length_marker
@@ -568,7 +690,7 @@ class Ypf(KaitaiStruct):
             self.uncompressed_length = self._io.read_u4le()
             self.in_archive_length = self._io.read_u4le()
             self.body_ofs = self._io.read_u4le()
-            self.end_of_record = self._io.ensure_fixed_contents(struct.pack('4b', 0, 0, 0, 0))
+            self.end_of_record = self._io.ensure_fixed_contents(b"\x00\x00\x00\x00")
             self.unknown5 = self._io.read_u4le()
 
         @property
@@ -591,6 +713,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(37)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -602,6 +727,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(26)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -613,6 +741,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(32)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -624,6 +755,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(19)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -635,6 +769,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(21)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -646,6 +783,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(9)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -657,6 +797,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(15)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -668,6 +811,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self.text = (self._io.read_bytes_full()).decode(u"SJIS")
 
 
@@ -676,6 +822,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(49)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -687,6 +836,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(43)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
@@ -698,6 +850,9 @@ class Ypf(KaitaiStruct):
             self._io = _io
             self._parent = _parent
             self._root = _root if _root else self
+            self._read()
+
+        def _read(self):
             self._raw__raw_holder = self._io.read_bytes(10)
             self._raw_holder = KaitaiStream.process_xor_one(self._raw__raw_holder, 201)
             io = KaitaiStream(BytesIO(self._raw_holder))
