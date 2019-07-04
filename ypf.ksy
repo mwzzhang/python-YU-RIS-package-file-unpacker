@@ -6,7 +6,7 @@ meta:
 seq:
   - id: magic
     contents: ["YPF", 0]
-  - id: unknown0
+  - id: engine_version
     type: u4
   - id: file_count
     type: u4
