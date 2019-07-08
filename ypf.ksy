@@ -412,5 +412,6 @@ enums:
   file_type:
     0: text
     2: png
+    3: jpg
     5: wav
     6: ogg

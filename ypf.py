@@ -14,6 +14,7 @@ class Ypf(KaitaiStruct):
     class FileType(Enum):
         text = 0
         png = 2
+        jpg = 3
         wav = 5
         ogg = 6
     def __init__(self, _io, _parent=None, _root=None):
